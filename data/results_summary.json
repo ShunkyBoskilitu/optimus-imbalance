@@ -1,0 +1,62 @@
+{
+  "dataset": {
+    "source": "Quidax Exchange (Lagos, Nigeria)",
+    "start_time_utc": "2025-06-26T08:45:00Z",
+    "end_time_utc": "2025-06-27T19:36:00Z",
+    "total_raw_snapshots": 121758,
+    "dropped_crossed_books": 15181,
+    "dropped_empty_snapshots": 1368,
+    "kept_clean_snapshots": 104196,
+    "effective_logging_time_hours": 6.6
+  },
+  "signal_evaluation": {
+    "rule_name": "Depth Imbalance Rule (order_imbalance.cpp)",
+    "threshold": 0.6,
+    "horizon_steps": 1,
+    "total_firings": 5138,
+    "subsequent_mid_moves": 1696,
+    "move_percentage": 33.0,
+    "directional_accuracy_p_hat": 0.2111,
+    "wilson_95_ci": [
+      0.192,
+      0.231
+    ],
+    "block_bootstrap_95_ci": [
+      0.1937,
+      0.2287
+    ],
+    "brier_score_rule": 0.7889,
+    "brier_score_base_rate": 0.2461,
+    "brier_skill_score": -2.2058
+  },
+  "per_market_breakdown": {
+    "BTCNGN": {
+      "firings_with_move": 135,
+      "directional_accuracy": 0.289
+    },
+    "ETHNGN": {
+      "firings_with_move": 461,
+      "directional_accuracy": 0.364
+    },
+    "XRPNGN": {
+      "firings_with_move": 280,
+      "directional_accuracy": 0.275
+    },
+    "LTCNGN": {
+      "firings_with_move": 328,
+      "directional_accuracy": 0.11
+    },
+    "TRXNGN": {
+      "firings_with_move": 374,
+      "directional_accuracy": 0.091
+    },
+    "QDXNGN": {
+      "firings_with_move": 109,
+      "directional_accuracy": 0.028
+    },
+    "DASHNGN": {
+      "firings_with_move": 9,
+      "directional_accuracy": 0.111
+    }
+  }
+}
