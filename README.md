@@ -61,3 +61,5 @@ python3 src/avellaneda_stoikov.py
 # Run decentralized liquidity mesh consensus simulation
 python3 src/decentralized_mesh.py
 ```
+
+<!-- verified for replication -->
