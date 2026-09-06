@@ -6,7 +6,21 @@
 
 ---
 
-## 1. Key Finding: The Inverted Depth Imbalance Signal
+## 1. Repository Structure & Scripts
+
+| Path | Description |
+|---|---|
+| [`src/optimus_orderbook.py`](src/optimus_orderbook.py) | Level-2 streaming order book collector for Quidax WebSocket API |
+| [`src/clean_and_score.py`](src/clean_and_score.py) | Data cleaning, crossed-book filtering, and depth imbalance evaluation |
+| [`src/block_bootstrap.py`](src/block_bootstrap.py) | Stationary block bootstrap (60s blocks) correcting for book state autocorrelation |
+| [`src/brier_baseline.py`](src/brier_baseline.py) | Probabilistic forecast scoring, calibration curves, and Brier skill score computation |
+| [`src/avellaneda_stoikov.py`](src/avellaneda_stoikov.py) | Avellaneda-Stoikov market-making model and arrival intensity calibration on ETH/NGN |
+| [`src/decentralized_mesh.py`](src/decentralized_mesh.py) | Peer-to-peer liquidity mesh simulation and gossip communication overhead profiling |
+| [`data/results_summary.json`](data/results_summary.json) | Disaggregated empirical results, sample sizes, and confidence intervals across 9 pairs |
+
+---
+
+## 2. Key Finding: The Inverted Depth Imbalance Signal
 We evaluated a canonical high-frequency order book depth imbalance indicator:
 $$\rho = \frac{V_{\text{bid}} - V_{\text{ask}}}{V_{\text{bid}} + V_{\text{ask}}}$$
 where an imbalance $\rho > 0.60$ issues a buy call (predicting an upward mid-price movement) and $\rho < -0.60$ issues a sell call.
@@ -21,7 +35,7 @@ The signal is **reliably and statistically significantly inverted** ($p < 10^{-1
 
 ---
 
-## 2. Per-Market Breakdown (Horizon $h=1$)
+## 3. Per-Market Breakdown (Horizon $h=1$)
 | Market | Firings with Move | Directional Accuracy | Interpretation |
 |---|:---:|:---:|---|
 | **ETH/NGN** | 461 | **36.4%** | Relatively liquid; less inverted |
@@ -34,13 +48,13 @@ The signal is **reliably and statistically significantly inverted** ($p < 10^{-1
 
 ---
 
-## 3. Deliberate Non-Claims (Scientific Restraint)
+## 4. Deliberate Non-Claims (Scientific Restraint)
 1. **No Trading P&L Claimed**: We evaluated purely directional mid-price movements. Because the touch is thin and spreads on these books range from 15 to 120 bps, a directional prediction does not imply an executable trading strategy. Simulating P&L without modeling fill probabilities and queue priority would report an empirical counting exercise as money.
 2. **No Claim of General Market Law**: The inversion is heavily concentrated in illiquid books where quote updates are slow ($>2$ seconds). Pooling all markets creates an aggregation artifact.
 
 ---
 
-## 4. Replication
+## 5. Replication
 ```bash
 # Clone the repository
 git clone https://github.com/ShunkyBoskilitu/optimus-imbalance.git
